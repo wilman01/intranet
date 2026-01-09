@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FVF Intranet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para recuperar el diseño original */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Lado Izquierdo: Imagen del Edificio */
+        .login-image {
+            flex: 1;
+            background: linear-gradient(rgba(128, 0, 32, 0.4), rgba(128, 0, 32, 0.4)), 
+                        url('img/img_index.png'); /* Asegúrate que esta sea la imagen del edificio */
+            background-size: 100% 100%;
+            background-position: bottom;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-image h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+        /* Lado Derecho: Formulario */
+        .login-form-container {
+            width: 450px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .login-logo {
+            width: 100px;
+            margin-bottom: 30px;
+            align-self: center;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: var(--vinotinto, #800020);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #800020;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Responsivo para móviles */
+        @media (max-width: 850px) {
+            .login-image { display: none; }
+            .login-form-container { width: 100%; padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-image">
+            <h1>INTRANET</h1>
+            <p>Federación Venezolana de Fútbol</p>
+        </div>
+
+        <div class="login-form-container">
+            <img src="img/logo_fvf.png" alt="Logo FVF" class="login-logo">
+            
+            <h2 style="margin-bottom: 8px;">Iniciar Sesión</h2>
+            <p style="color: #888; margin-bottom: 30px;">Ingresa tus credenciales para continuar</p>
+
+            <form onsubmit="event.preventDefault(); window.location.href='intranet.html';">
+                <div class="form-group">
+                    <label>Usuario / Correo</label>
+                    <input type="email" class="login-input" placeholder="ejemplo@fvf.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" class="login-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+            </form>
+
+            <div class="register-link">
+                ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

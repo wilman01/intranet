@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - FVF Intranet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Diseño de rejilla principal */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2 partes para noticias, 1 para el lateral */
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* Sección de Noticias */
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+        }
+        .news-image {
+            width: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        .news-content {
+            padding: 20px;
+            flex: 1;
+        }
+        .news-tag {
+            background: #800020;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Sección Lateral (Cumpleaños y Aniversarios) */
+        .sidebar-widgets {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .widget-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .widget-title {
+            font-size: 18px;
+            color: #800020;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f4f4f4;
+            padding-bottom: 10px;
+        }
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .item-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .avatar-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #ddd;
+            background-size: cover;
+        }
+        .item-info h4 { margin: 0; font-size: 14px; color: #333; }
+        .item-info p { margin: 0; font-size: 12px; color: #777; }
+
+        @media (max-width: 1000px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .news-card { flex-direction: column; }
+            .news-image { width: 100%; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intranet-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><img src="img/logo_fvf.png" class="logo-intranet"></div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="active"><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                    <li><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
+                    <li><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
+                    <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
+                    <li><a href="talento_humano.html"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span></a></li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
+                    <li><a href="gestion.html"><i class="fas fa-folder-open"></i> <span>Gestión</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Panel de Inicio</h1>
+                 <div class="user-info">
+                    <span><i class="fas fa-user-circle"></i> Usuario FVF</span>
+                </div>
+            </header>
+
+            <div class="scroll-area">
+                <div class="dashboard-grid">
+                    
+                    <section class="news-container">
+                        <h2 style="color: #333;"><i class="fas fa-newspaper"></i> Últimas Noticias</h2>
+                        
+                        <article class="news-card">
+                            <div class="news-image" style="background-image: url('img/noticia1.jpg');"></div>
+                            <div class="news-content">
+                                <span class="news-tag">Institucional</span>
+                                <h3 style="margin: 10px 0;">Nueva Sede Administrativa: Avances del Proyecto</h3>
+                                <p style="color: #666; font-size: 14px;">Se han completado las fases de infraestructura del nuevo edificio operativo de la FVF...</p>
+                                <a href="#" style="color: #800020; font-weight: 600; text-decoration: none; font-size: 13px;">Leer más →</a>
+                            </div>
+                        </article>
+
+                        <article class="news-card">
+                            <div class="news-image" style="background-image: url('img/noticia2.jpg');"></div>
+                            <div class="news-content">
+                                <span class="news-tag">Deportivo</span>
+                                <h3 style="margin: 10px 0;">Módulo de Preparación Selección Masculina</h3>
+                                <p style="color: #666; font-size: 14px;">Inicia la concentración de cara a las próximas jornadas de eliminatorias en el CNAR.</p>
+                                <a href="#" style="color: #800020; font-weight: 600; text-decoration: none; font-size: 13px;">Leer más →</a>
+                            </div>
+                        </article>
+                    </section>
+
+                    <aside class="sidebar-widgets">
+                        
+                       <div class="widget-card">
+                         <div class="widget-title"><i class="fas fa-birthday-cake"></i> Cumpleañeros Hoy</div>
+                             <div class="item-list">
+                                  <div class="item-row" id="birth-1">
+                                      <div class="avatar-circle" style="background-image: url('img/user1.jpg');"></div>
+                                         <div class="item-info">
+                        <h4>Andrea Rodríguez</h4>
+                        <p>Gerencia Legal</p>
+                    </div>
+                    <button class="btn-congratulate" onclick="sendQuickWish('birth-1')">
+                        <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="item-row" id="birth-2">
+                         <div class="avatar-circle" style="background-image: url('img/user2.jpg');"></div>
+                        <div class="item-info">
+                     <h4>Carlos Méndez</h4>
+                    <p>Tecnología</p>
+                    </div>
+                    <button class="btn-congratulate" onclick="sendQuickWish('birth-2')">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+                  <div class="widget-card">
+    <div class="widget-title"><i class="fas fa-medal"></i> Aniversarios</div>
+    <div class="item-list">
+        <div class="item-row" id="anniv-1">
+            <div class="avatar-circle" style="background-image: url('img/user3.jpg');"></div>
+            <div class="item-info">
+                <h4>Miguel Castillo</h4>
+                <p><strong>5 Años</strong> en la FVF</p>
+            </div>
+            <button class="btn-clap" onclick="sendQuickClap('anniv-1')">
+                <i class="fas fa-hands-clapping"></i>
+            </button>
+        </div>
+        <div class="item-row" id="anniv-2">
+            <div class="avatar-circle" style="background-image: url('img/user4.jpg');"></div>
+            <div class="item-info">
+                <h4>Laura Rivas</h4>
+                <p><strong>2 Años</strong> en la FVF</p>
+            </div>
+            <button class="btn-clap" onclick="sendQuickClap('anniv-2')">
+                <i class="fas fa-hands-clapping"></i>
+            </button>
+        </div>
+    </div>
+</div>
+                    </aside>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

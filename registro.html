@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Acceso - FVF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body, html {
+            height: 100%; margin: 0; display: flex;
+            font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6;
+        }
+        .login-wrapper { display: flex; width: 100%; height: 100vh; }
+
+        .login-image {
+            flex: 1;
+            background: linear-gradient(rgba(128, 0, 32, 0.4), rgba(128, 0, 32, 0.4)), 
+                        url('img/img_index.png');
+            background-size: 100% 100%; background-position: bottom;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; color: white; padding: 40px; text-align: center;
+        }
+
+        .login-form-container {
+            width: 500px; background: white; display: flex;
+            flex-direction: column; justify-content: center;
+            padding: 40px 60px; box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .login-logo { width: 80px; margin-bottom: 20px; align-self: center; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; font-size: 14px; }
+        
+        .login-input {
+            width: 100%; padding: 10px; border: 1px solid #ddd;
+            border-radius: 8px; font-size: 14px;
+        }
+
+        .btn-request {
+            width: 100%; padding: 14px; background: #800020; color: white;
+            border: none; border-radius: 8px; font-size: 16px; font-weight: 600;
+            cursor: pointer; margin-top: 10px; transition: 0.3s;
+        }
+        .btn-request:hover { background: #600018; }
+
+        .register-link { text-align: center; margin-top: 20px; font-size: 14px; color: #666; }
+        .register-link a { color: #800020; text-decoration: none; font-weight: 700; }
+
+        /* Estilo para el aviso de solicitud */
+        .info-notice {
+            background-color: #fff4f4; border-left: 4px solid #800020;
+            padding: 10px; margin-bottom: 20px; font-size: 13px; color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-image">
+            <h1>SOLICITUD DE ACCESO</h1>
+            <p>Plataforma interna para colaboradores FVF</p>
+        </div>
+
+        <div class="login-form-container">
+            <img src="img/logo_fvf.png" alt="Logo FVF" class="login-logo">
+            
+            <h2 style="margin-bottom: 5px;">Crear Solicitud</h2>
+            
+            <div class="info-notice">
+                <i class="fas fa-info-circle"></i> Su solicitud será revisada por el Departamento de Tecnología para su posterior aprobación.
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Su solicitud ha sido enviada con éxito. Recibirá un correo electrónico cuando sea aprobada por el administrador.'); window.location.href='index.html';">
+                <div class="form-group">
+                    <label>Nombre y Apellido</label>
+                    <input type="text" class="login-input" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo Institucional</label>
+                    <input type="email" class="login-input" placeholder="usuario@fvf.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cédula de Identidad</label>
+                    <input type="text" class="login-input" placeholder="V-00.000.000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gerencia</label>
+                    <select class="login-input" required>
+                        <option value="">Seleccione su área...</option>
+                        <option>Tecnología</option>
+                        <option>Talento Humano</option>
+                        <option>Gerencia Técnica</option>
+                        <option>Administración / Finanzas</option>
+                        <option>Comercial / Marketing</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Motivo de la solicitud</label>
+                    <textarea class="login-input" style="height: 60px; resize: none;" placeholder="Ej. Nuevo ingreso en el área de soporte..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-request">Enviar Solicitud</button>
+            </form>
+
+            <div class="register-link">
+                ¿Ya tienes acceso? <a href="index.html">Inicia sesión aquí</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

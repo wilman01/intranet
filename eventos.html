@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - FVF Intranet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="intranet-container">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet">
+    </div>
+    
+    <nav class="sidebar-menu">
+        <ul>
+            <li class="nav-item-inicio"><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li class="active"><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
+            <li class="nav-item-colab"><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
+            <li class="nav-item-gerencias"><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
+            <li class="nav-item-talento"><a href="talento_humano.html"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span></a></li>
+            <li class="nav-item-soporte"><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
+            <li class="nav-item-gestion"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="index.html" class="btn-logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Cerrar Sesión</span>
+        </a>
+    </div>
+</aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleMenu()" style="display:none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Calendario de Eventos</h1>
+                </div>
+                <div class="user-info">
+                    <span><i class="fas fa-user-circle"></i> Usuario FVF</span>
+                </div>
+            </header>
+
+            <div class="scroll-area">
+                <div class="view-section">
+                    <h2 style="margin-bottom: 25px; color: var(--vinotinto); border-left: 5px solid var(--vinotinto); padding-left: 15px;">Próximos Eventos</h2>
+                    
+                    <div class="events-grid">
+                        <div class="event-card">
+                            <div class="event-image" style="background-image: url('img/img_index.png');">
+                                <span class="event-date">15 ENE</span>
+                            </div>
+                            <div class="event-info" style="padding: 20px;">
+                                <h3 style="margin-bottom: 10px;">Congreso de Directivos</h3>
+                                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Planificación estratégica del calendario de ligas nacionales para el ciclo 2026.</p>
+                                <button class="btn-continue" style="padding: 10px; font-size: 14px;">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image" style="background-image: url('img/img_index.png');">
+                                <span class="event-date">22 ENE</span>
+                            </div>
+                            <div class="event-info" style="padding: 20px;">
+                                <h3 style="margin-bottom: 10px;">Taller de Arbitraje</h3>
+                                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Capacitación sobre nuevas reglas FIFA y actualización del protocolo VAR.</p>
+                                <button class="btn-continue" style="padding: 10px; font-size: 14px;">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image" style="background-image: url('img/img_index.png');">
+                                <span class="event-date">05 FEB</span>
+                            </div>
+                            <div class="event-info" style="padding: 20px;">
+                                <h3 style="margin-bottom: 10px;">Mantenimiento Sedes</h3>
+                                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Inspección técnica de los estadios principales del país previa al torneo clausura.</p>
+                                <button class="btn-continue" style="padding: 10px; font-size: 14px;">Ver Detalles</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

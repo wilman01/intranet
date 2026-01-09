@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte Técnico - FVF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="intranet-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header"><img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet"></div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                    <li><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
+                    <li><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
+                    <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
+                    <li><a href="talento_humano.html"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span></a></li>
+                    <li class="active"><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
+                    <li class="nav-item-gestion"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Centro de Soporte IT</h1>
+                <div class="user-info">
+                    <span><i class="fas fa-user-circle"></i> Usuario FVF</span>
+                </div>
+            </header>
+
+            <div class="scroll-area">
+                <div class="view-section">
+                    <h2 style="margin-bottom: 25px; color: var(--vinotinto);">¿Cómo podemos ayudarte hoy?</h2>
+                    
+                    <div class="gerencias-grid">
+                        <div class="gerencia-card">
+                            <div class="g-icon" style="color: #e74c3c;"><i class="fas fa-desktop"></i></div>
+                            <h3>Falla de Equipo</h3>
+                            <p>Problemas con PC, monitores, teclados o periféricos de oficina.</p>
+                            <button class="btn-continue" onclick="openTicketModal('Hardware')" style="width: 100%;">Reportar Falla</button>
+                        </div>
+
+                        <div class="gerencia-card">
+                            <div class="g-icon" style="color: #3498db;"><i class="fas fa-wifi"></i></div>
+                            <h3>Internet y Red</h3>
+                            <p>Problemas de conexión, acceso a carpetas compartidas o VPN.</p>
+                            <button class="btn-continue" onclick="openTicketModal('Red')" style="width: 100%;">Reportar Incidencia</button>
+                        </div>
+
+                        <div class="gerencia-card">
+                            <div class="g-icon" style="color: #27ae60;"><i class="fas fa-code-branch"></i></div>
+                            <h3>Software y Accesos</h3>
+                            <p>Instalación de programas, reseteo de claves o correo institucional.</p>
+                            <button class="btn-continue" onclick="openTicketModal('Software')" style="width: 100%;">Solicitar Acceso</button>
+                        </div>
+                    </div>
+
+                    <h2 style="margin: 40px 0 20px; color: var(--vinotinto);">Mis Tickets Recientes</h2>
+                    <div class="colabs-grid">
+                        <div class="colab-card">
+                            <div class="g-icon" style="font-size: 24px; margin: 0; color: #f1c40f;"><i class="fas fa-clock"></i></div>
+                            <div class="colab-info">
+                                <h3>Ticket #8842 - Falla de Mouse</h3>
+                                <p class="job-title">Estado: <b>En Espera</b> - Creado: 28/12/2025</p>
+                                <span class="dept-tag">Ver Detalle</span>
+                            </div>
+                        </div>
+                        <div class="colab-card">
+                            <div class="g-icon" style="font-size: 24px; margin: 0; color: #27ae60;"><i class="fas fa-check-circle"></i></div>
+                            <div class="colab-info">
+                                <h3>Ticket #8830 - Acceso a OneDrive</h3>
+                                <p class="job-title">Estado: <b>Resuelto</b> - Cerrado: 24/12/2025</p>
+                                <span class="dept-tag" style="background:#eee; color:#666;">Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="ticketModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="ticketTitle">Reportar Incidencia</h3>
+                <span class="close-modal" onclick="closeTicketModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="font-weight:600;">Prioridad</label>
+                        <select class="form-input" style="width:100%; margin-top:5px;">
+                            <option>Baja (Consulta)</option>
+                            <option>Media (Dificulta el trabajo)</option>
+                            <option>Alta (No puedo trabajar)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="font-weight:600;">Descripción del Problema</label>
+                        <textarea class="form-input" style="width:100%; height:100px; margin-top:5px;" placeholder="Detalla lo que sucede..."></textarea>
+                    </div>
+                    <button type="button" class="btn-continue" onclick="alert('Ticket generado correctamente'); closeTicketModal();" style="width:100%;">Generar Ticket #</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funciones específicas para este modal
+        function openTicketModal(categoria) {
+            document.getElementById('ticketTitle').innerText = "Reportar Falla: " + categoria;
+            document.getElementById('ticketModal').style.display = 'flex';
+        }
+        function closeTicketModal() {
+            document.getElementById('ticketModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
