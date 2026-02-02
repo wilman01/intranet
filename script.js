@@ -1,6 +1,34 @@
 function toggleMenu() {
+
+function toggleSubmenu(element) {
+    const parentLi = element.closest('.has-submenu');
+    if (parentLi) {
+        parentLi.classList.toggle('active');
+    }
+}
     const sidebar = document.getElementById('sidebar');
+
+function toggleSubmenu(element) {
+    const parentLi = element.closest('.has-submenu');
+    if (parentLi) {
+        parentLi.classList.toggle('active');
+    }
+}
     if (sidebar) sidebar.classList.toggle('active');
+
+function toggleSubmenu(element) {
+    const parentLi = element.closest('.has-submenu');
+    if (parentLi) {
+        parentLi.classList.toggle('active');
+    }
+}
+}
+
+function toggleSubmenu(element) {
+    const parentLi = element.closest('.has-submenu');
+    if (parentLi) {
+        parentLi.classList.toggle('active');
+    }
 }
 
 function filterColabs() {
