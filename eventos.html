@@ -6,34 +6,157 @@
     <title>Eventos - FVF Intranet</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .section-header i {
+            color: #800020;
+            font-size: 1.2rem;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .event-date .day {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #800020;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            display: block;
+            font-size: 0.7rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .event-info {
+            padding: 24px;
+        }
+
+        .event-info h3 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin: 0 0 10px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .event-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0 0 18px;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .event-meta-item i {
+            color: #800020;
+        }
+    </style>
 </head>
 <body>
 
     <div class="intranet-container">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet">
-    </div>
-    
-    <nav class="sidebar-menu">
-        <ul>
-            <li class="nav-item-inicio"><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
-            <li class="active"><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
-            <li class="nav-item-colab"><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
-            <li class="nav-item-gerencias"><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
-            <li class="nav-item-talento"><a href="talento_humano.html"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span></a></li>
-            <li class="nav-item-soporte"><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
-            <li class="nav-item-gestion"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
-        </ul>
-    </nav>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet">
+            </div>
+            
+            <nav class="sidebar-menu">
+                <ul>
+                    <li><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                    <li class="active"><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
+                    <li><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
+                    <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
+                    <li><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="adm-personal.html">Adm de Personal</a></li>
+                            <li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li>
+                            <li><a href="seguridad-laboral.html">Seguridad Laboral</a></li>
+                            <li><a href="atraccion-talento.html">Atraccion de Talento</a></li>
+                            <li><a href="atencion-medica.html">Atencion Medica</a></li>
+                            <li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li>
+                            <li><a href="calidad-vida.html">Calidad de Vida</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
+                    <li><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
+                </ul>
+            </nav>
 
-    <div class="sidebar-footer">
-        <a href="index.html" class="btn-logout">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Cerrar Sesión</span>
-        </a>
-    </div>
-</aside>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </aside>
 
         <main class="main-content">
             <header class="top-bar">
@@ -50,39 +173,63 @@
 
             <div class="scroll-area">
                 <div class="view-section">
-                    <h2 style="margin-bottom: 25px; color: var(--vinotinto); border-left: 5px solid var(--vinotinto); padding-left: 15px;">Próximos Eventos</h2>
+                    <div class="section-header">
+                        <i class="fas fa-calendar-check"></i>
+                        <h2>Próximos Eventos</h2>
+                    </div>
                     
                     <div class="events-grid">
                         <div class="event-card">
                             <div class="event-image" style="background-image: url('img/img_index.png');">
-                                <span class="event-date">15 ENE</span>
+                                <div class="event-date">
+                                    <span class="day">15</span>
+                                    <span class="month">ENE</span>
+                                </div>
                             </div>
-                            <div class="event-info" style="padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Congreso de Directivos</h3>
-                                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Planificación estratégica del calendario de ligas nacionales para el ciclo 2026.</p>
-                                <button class="btn-continue" style="padding: 10px; font-size: 14px;">Ver Detalles</button>
-                            </div>
-                        </div>
-
-                        <div class="event-card">
-                            <div class="event-image" style="background-image: url('img/img_index.png');">
-                                <span class="event-date">22 ENE</span>
-                            </div>
-                            <div class="event-info" style="padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Taller de Arbitraje</h3>
-                                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Capacitación sobre nuevas reglas FIFA y actualización del protocolo VAR.</p>
-                                <button class="btn-continue" style="padding: 10px; font-size: 14px;">Ver Detalles</button>
+                            <div class="event-info">
+                                <h3>Congreso de Directivos</h3>
+                                <p>Planificación estratégica del calendario de ligas nacionales para el ciclo 2026.</p>
+                                <div class="event-meta">
+                                    <span class="event-meta-item"><i class="fas fa-map-marker-alt"></i> Sede Central</span>
+                                    <span class="event-meta-item"><i class="fas fa-clock"></i> 09:00 AM</span>
+                                </div>
+                                <button class="btn-primary" style="width: 100%;">Ver Detalles</button>
                             </div>
                         </div>
 
                         <div class="event-card">
                             <div class="event-image" style="background-image: url('img/img_index.png');">
-                                <span class="event-date">05 FEB</span>
+                                <div class="event-date">
+                                    <span class="day">22</span>
+                                    <span class="month">ENE</span>
+                                </div>
                             </div>
-                            <div class="event-info" style="padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Mantenimiento Sedes</h3>
-                                <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Inspección técnica de los estadios principales del país previa al torneo clausura.</p>
-                                <button class="btn-continue" style="padding: 10px; font-size: 14px;">Ver Detalles</button>
+                            <div class="event-info">
+                                <h3>Taller de Arbitraje</h3>
+                                <p>Capacitación sobre nuevas reglas FIFA y actualización del protocolo VAR.</p>
+                                <div class="event-meta">
+                                    <span class="event-meta-item"><i class="fas fa-map-marker-alt"></i> CNAR</span>
+                                    <span class="event-meta-item"><i class="fas fa-clock"></i> 02:00 PM</span>
+                                </div>
+                                <button class="btn-primary" style="width: 100%;">Ver Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image" style="background-image: url('img/img_index.png');">
+                                <div class="event-date">
+                                    <span class="day">05</span>
+                                    <span class="month">FEB</span>
+                                </div>
+                            </div>
+                            <div class="event-info">
+                                <h3>Mantenimiento Sedes</h3>
+                                <p>Inspección técnica de los estadios principales del país previa al torneo clausura.</p>
+                                <div class="event-meta">
+                                    <span class="event-meta-item"><i class="fas fa-map-marker-alt"></i> Multiple</span>
+                                    <span class="event-meta-item"><i class="fas fa-clock"></i> 08:00 AM</span>
+                                </div>
+                                <button class="btn-primary" style="width: 100%;">Ver Detalles</button>
                             </div>
                         </div>
                     </div>

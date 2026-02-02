@@ -7,51 +7,196 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body, html {
-            height: 100%; margin: 0; display: flex;
-            font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6;
+            height: 100%;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f7fa;
         }
-        .login-wrapper { display: flex; width: 100%; height: 100vh; }
+
+        .login-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+        }
 
         .login-image {
             flex: 1;
-            background: linear-gradient(rgba(128, 0, 32, 0.4), rgba(128, 0, 32, 0.4)), 
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.85), rgba(90, 20, 40, 0.95)),
                         url('img/img_index.png');
-            background-size: 100% 100%; background-position: bottom;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; color: white; padding: 40px; text-align: center;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .login-image h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .login-image p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
         .login-form-container {
-            width: 500px; background: white; display: flex;
-            flex-direction: column; justify-content: center;
-            padding: 40px 60px; box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 45px;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.08);
             overflow-y: auto;
         }
 
-        .login-logo { width: 80px; margin-bottom: 20px; align-self: center; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; font-size: 14px; }
-        
-        .login-input {
-            width: 100%; padding: 10px; border: 1px solid #ddd;
-            border-radius: 8px; font-size: 14px;
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(128, 0, 32, 0.2);
+            padding: 12px;
+            background: white;
+        }
+
+        .login-header h2 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .info-notice {
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.08), rgba(128, 0, 32, 0.05));
+            border-left: 4px solid #800020;
+            padding: 14px 16px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .info-notice i {
+            color: #800020;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        .form-group label i {
+            color: #800020;
+            font-size: 0.85rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #800020;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(128, 0, 32, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #9ca3af;
+        }
+
+        textarea.form-input {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        select.form-input {
+            cursor: pointer;
         }
 
         .btn-request {
-            width: 100%; padding: 14px; background: #800020; color: white;
-            border: none; border-radius: 8px; font-size: 16px; font-weight: 600;
-            cursor: pointer; margin-top: 10px; transition: 0.3s;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #800020, #5a1428);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
         }
-        .btn-request:hover { background: #600018; }
 
-        .register-link { text-align: center; margin-top: 20px; font-size: 14px; color: #666; }
-        .register-link a { color: #800020; text-decoration: none; font-weight: 700; }
+        .btn-request:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(128, 0, 32, 0.35);
+        }
 
-        /* Estilo para el aviso de solicitud */
-        .info-notice {
-            background-color: #fff4f4; border-left: 4px solid #800020;
-            padding: 10px; margin-bottom: 20px; font-size: 13px; color: #555;
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .register-link a {
+            color: #800020;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 850px) {
+            .login-image { display: none; }
+            .login-form-container { max-width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .login-form-container { padding: 30px 25px; }
         }
     </style>
 </head>
@@ -64,33 +209,35 @@
         </div>
 
         <div class="login-form-container">
-            <img src="img/logo_fvf.png" alt="Logo FVF" class="login-logo">
-            
-            <h2 style="margin-bottom: 5px;">Crear Solicitud</h2>
+            <div class="login-header">
+                <img src="img/logo_fvf.png" alt="Logo FVF" class="login-logo">
+                <h2>Crear Solicitud</h2>
+            </div>
             
             <div class="info-notice">
-                <i class="fas fa-info-circle"></i> Su solicitud será revisada por el Departamento de Tecnología para su posterior aprobación.
+                <i class="fas fa-info-circle"></i>
+                <span>Su solicitud será revisada por el Departamento de Tecnología para su posterior aprobación.</span>
             </div>
 
             <form onsubmit="event.preventDefault(); alert('Su solicitud ha sido enviada con éxito. Recibirá un correo electrónico cuando sea aprobada por el administrador.'); window.location.href='index.html';">
                 <div class="form-group">
-                    <label>Nombre y Apellido</label>
-                    <input type="text" class="login-input" placeholder="Ej. Juan Pérez" required>
+                    <label><i class="fas fa-user"></i> Nombre y Apellido</label>
+                    <input type="text" class="form-input" placeholder="Ej. Juan Pérez" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Correo Institucional</label>
-                    <input type="email" class="login-input" placeholder="usuario@fvf.com" required>
+                    <label><i class="fas fa-envelope"></i> Correo Institucional</label>
+                    <input type="email" class="form-input" placeholder="usuario@fvf.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Cédula de Identidad</label>
-                    <input type="text" class="login-input" placeholder="V-00.000.000" required>
+                    <label><i class="fas fa-id-card"></i> Cédula de Identidad</label>
+                    <input type="text" class="form-input" placeholder="V-00.000.000" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Gerencia</label>
-                    <select class="login-input" required>
+                    <label><i class="fas fa-sitemap"></i> Gerencia</label>
+                    <select class="form-input" required>
                         <option value="">Seleccione su área...</option>
                         <option>Tecnología</option>
                         <option>Talento Humano</option>
@@ -101,11 +248,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Motivo de la solicitud</label>
-                    <textarea class="login-input" style="height: 60px; resize: none;" placeholder="Ej. Nuevo ingreso en el área de soporte..."></textarea>
+                    <label><i class="fas fa-pen"></i> Motivo de la solicitud</label>
+                    <textarea class="form-input" placeholder="Ej. Nuevo ingreso en el área de soporte..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-request">Enviar Solicitud</button>
+                <button type="submit" class="btn-request">
+                    <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                </button>
             </form>
 
             <div class="register-link">

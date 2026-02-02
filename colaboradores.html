@@ -6,44 +6,392 @@
     <title>Colaboradores - FVF</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .section-header i {
+            color: #800020;
+            font-size: 1.2rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+        }
+
+        .search-container .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 18px 14px 48px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #800020;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(128, 0, 32, 0.1);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #6b7280;
+            background: #f3f4f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            background: #e5e7eb;
+        }
+
+        .tab.active {
+            background: #800020;
+            color: white;
+        }
+
+        .colabs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .colab-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .colab-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .colab-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .colab-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .colab-info h3 {
+            font-size: 1rem;
+            color: #1a1a2e;
+            margin: 0 0 4px;
+            font-weight: 700;
+        }
+
+        .colab-info .job-title {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin: 0 0 8px;
+        }
+
+        .dept-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(128, 0, 32, 0.1);
+            color: #800020;
+        }
+
+        .colab-card {
+            cursor: pointer;
+        }
+
+        .colab-card:hover .colab-img {
+            transform: scale(1.05);
+        }
+
+        .colab-card .colab-img {
+            transition: transform 0.3s ease;
+        }
+
+        /* Modal Styles */
+        .profile-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            backdrop-filter: blur(4px);
+        }
+
+        .profile-modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .profile-modal {
+            background: white;
+            width: 90%;
+            max-width: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #800020, #5a1428);
+            padding: 40px 30px 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-header .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .profile-header h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin: 0 0 5px;
+            font-weight: 700;
+        }
+
+        .profile-header .profile-role {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .profile-dept-badge {
+            display: inline-block;
+            background: white;
+            color: #800020;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-body {
+            padding: 25px 30px 30px;
+        }
+
+        .profile-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .profile-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .profile-info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #800020;
+            font-size: 1.1rem;
+        }
+
+        .profile-info-content {
+            flex: 1;
+        }
+
+        .profile-info-label {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 3px;
+        }
+
+        .profile-info-value {
+            font-size: 0.95rem;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .profile-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .profile-btn-primary {
+            background: linear-gradient(135deg, #800020, #5a1428);
+            color: white;
+            border: none;
+        }
+
+        .profile-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(128, 0, 32, 0.3);
+        }
+
+        .profile-btn-secondary {
+            background: white;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+        }
+
+        .profile-btn-secondary:hover {
+            border-color: #800020;
+            color: #800020;
+        }
+
+        .profile-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .profile-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
 
     <div class="intranet-container">
- <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet">
-    </div>
-    
-    <nav class="sidebar-menu">
-        <ul>
-            <li class="nav-item-inicio"><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
-            <li class="nav-item-eventos"><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
-            <li class="active"><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
-            <li class="nav-item-gerencias"><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
-            <li class="nav-item-talento"><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a>
-                <ul class="submenu">
-                    <li><a href="adm-personal.html">Adm de Personal</a></li>
-                    <li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li>
-                    <li><a href="seguridad-laboral.html">Seguridad Laboral</a></li>
-                    <li><a href="atraccion-talento.html">Atraccion de Talento</a></li>
-                    <li><a href="atencion-medica.html">Atencion Medica</a></li>
-                    <li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li>
-                    <li><a href="calidad-vida.html">Calidad de Vida</a></li>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet">
+            </div>
+            
+            <nav class="sidebar-menu">
+                <ul>
+                    <li><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+                    <li><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
+                    <li class="active"><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
+                    <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
+                    <li><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="adm-personal.html">Adm de Personal</a></li>
+                            <li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li>
+                            <li><a href="seguridad-laboral.html">Seguridad Laboral</a></li>
+                            <li><a href="atraccion-talento.html">Atraccion de Talento</a></li>
+                            <li><a href="atencion-medica.html">Atencion Medica</a></li>
+                            <li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li>
+                            <li><a href="calidad-vida.html">Calidad de Vida</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
+                    <li><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
                 </ul>
-            </li>
-            <li class="nav-item-soporte"><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
-            <li class="nav-item-gestion"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
-        </ul>
-    </nav>
+            </nav>
 
-    <div class="sidebar-footer">
-        <a href="index.html" class="btn-logout">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Cerrar Sesión</span>
-        </a>
-    </div>
-</aside>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </aside>
 
         <main class="main-content">
             <header class="top-bar">
@@ -59,26 +407,23 @@
                     <div class="header-actions">
                         <div class="search-container">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" id="colabSearch" placeholder="Buscar por nombre, cargo o departamento..." onkeyup="filterColabs()">
+                            <input type="text" id="colabSearch" class="search-input" placeholder="Buscar por nombre, cargo o departamento..." onkeyup="filterColabs()">
                         </div>
-                        <button class="btn-add-colab">
-                            <i class="fas fa-plus"></i> Añadir Colaborador
-                        </button>
+                        
                     </div>
 
-                    <p style="margin-bottom: 15px; font-weight: 600; color: #666;">Team</p>
                     <div class="filter-tabs">
-                        <span class="tab active" onclick="filterTab('todos')">Todos</span>
-                        <span class="tab" onclick="filterTab('Talento Humano')">Talento Humano</span>
-                        <span class="tab" onclick="filterTab('Gerencia Técnica')">Gerencia Técnica</span>
-                        <span class="tab" onclick="filterTab('Tecnología')">Tecnología</span>
-                        <span class="tab" onclick="filterTab('Administración')">Administración</span>
+                        <span class="tab active" onclick="filterTab('todos', this)">Todos</span>
+                        <span class="tab" onclick="filterTab('Talento Humano', this)">Talento Humano</span>
+                        <span class="tab" onclick="filterTab('Gerencia Técnica', this)">Gerencia Técnica</span>
+                        <span class="tab" onclick="filterTab('Tecnología', this)">Tecnología</span>
+                        <span class="tab" onclick="filterTab('Administración', this)">Administración</span>
                     </div>
 
                     <div class="colabs-grid" id="colabsGrid">
                         
-                        <div class="colab-card" data-dept="Talento Humano">
-                            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=800020&color=fff" class="colab-img">
+                        <div class="colab-card" data-dept="Talento Humano" data-name="Juan Pérez" data-role="Coordinador Nacional" data-email="juan.perez@fvf.com" data-phone="+58 212-555-0101" data-department="Talento Humano" data-join="15/03/2020" data-photo="https://ui-avatars.com/api/?name=Juan+Perez&background=800020&color=fff">
+                            <img src="https://ui-avatars.com/api/?name=Juan+Perez&background=800020&color=fff" class="colab-img" alt="Juan Pérez">
                             <div class="colab-info">
                                 <h3>Juan Pérez</h3>
                                 <p class="job-title">Coordinador Nacional</p>
@@ -86,8 +431,8 @@
                             </div>
                         </div>
 
-                        <div class="colab-card" data-dept="Gerencia Técnica">
-                            <img src="https://ui-avatars.com/api/?name=Maria+Garcia&background=800020&color=fff" class="colab-img">
+                        <div class="colab-card" data-dept="Gerencia Técnica" data-name="María García" data-role="Analista Senior" data-email="maria.garcia@fvf.com" data-phone="+58 212-555-0102" data-department="Gerencia Técnica" data-join="22/08/2021" data-photo="https://ui-avatars.com/api/?name=Maria+Garcia&background=800020&color=fff">
+                            <img src="https://ui-avatars.com/api/?name=Maria+Garcia&background=800020&color=fff" class="colab-img" alt="María García">
                             <div class="colab-info">
                                 <h3>María García</h3>
                                 <p class="job-title">Analista Senior</p>
@@ -95,12 +440,21 @@
                             </div>
                         </div>
 
-                        <div class="colab-card" data-dept="Tecnología">
-                            <img src="https://ui-avatars.com/api/?name=Carlos+Rodriguez&background=800020&color=fff" class="colab-img">
+                        <div class="colab-card" data-dept="Tecnología" data-name="Carlos Rodríguez" data-role="Director de TI" data-email="carlos.rodriguez@fvf.com" data-phone="+58 212-555-0103" data-department="Tecnología" data-join="10/01/2019" data-photo="https://ui-avatars.com/api/?name=Carlos+Rodriguez&background=800020&color=fff">
+                            <img src="https://ui-avatars.com/api/?name=Carlos+Rodriguez&background=800020&color=fff" class="colab-img" alt="Carlos Rodríguez">
                             <div class="colab-info">
                                 <h3>Carlos Rodríguez</h3>
                                 <p class="job-title">Director de TI</p>
                                 <span class="dept-tag">Tecnología</span>
+                            </div>
+                        </div>
+
+                        <div class="colab-card" data-dept="Administración" data-name="Ana Martínez" data-role="Gerente de Administración" data-email="ana.martinez@fvf.com" data-phone="+58 212-555-0104" data-department="Administración" data-join="05/06/2018" data-photo="https://ui-avatars.com/api/?name=Ana+Martinez&background=800020&color=fff">
+                            <img src="https://ui-avatars.com/api/?name=Ana+Martinez&background=800020&color=fff" class="colab-img" alt="Ana Martínez">
+                            <div class="colab-info">
+                                <h3>Ana Martínez</h3>
+                                <p class="job-title">Gerente de Administración</p>
+                                <span class="dept-tag">Administración</span>
                             </div>
                         </div>
 
@@ -110,6 +464,95 @@
         </main>
     </div>
 
+    <div class="profile-modal-overlay" id="profileModal">
+        <div class="profile-modal">
+            <div class="profile-header">
+                <button class="profile-close" onclick="closeProfileModal()">&times;</button>
+                <img src="" alt="Foto de perfil" class="profile-avatar" id="profileAvatar">
+                <h3 id="profileName">Nombre</h3>
+                <p class="profile-role" id="profileRole">Cargo</p>
+                <span class="profile-dept-badge" id="profileDept">Departamento</span>
+            </div>
+            <div class="profile-body">
+                <div class="profile-info-item">
+                    <div class="profile-info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="profile-info-content">
+                        <div class="profile-info-label">Correo Electrónico</div>
+                        <div class="profile-info-value" id="profileEmail">email@fvf.com</div>
+                    </div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="profile-info-content">
+                        <div class="profile-info-label">Teléfono</div>
+                        <div class="profile-info-value" id="profilePhone">+58 212-555-0000</div>
+                    </div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="profile-info-content">
+                        <div class="profile-info-label">Fecha de Ingreso</div>
+                        <div class="profile-info-value" id="profileJoin">01/01/2020</div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="profile-btn profile-btn-secondary" onclick="closeProfileModal()">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                    <button class="profile-btn profile-btn-primary" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.colab-card').forEach(card => {
+            card.addEventListener('click', function() {
+                openProfileModal(this);
+            });
+        });
+
+        function openProfileModal(card) {
+            document.getElementById('profileAvatar').src = card.getAttribute('data-photo');
+            document.getElementById('profileName').textContent = card.getAttribute('data-name');
+            document.getElementById('profileRole').textContent = card.getAttribute('data-role');
+            document.getElementById('profileDept').textContent = card.getAttribute('data-department');
+            document.getElementById('profileEmail').textContent = card.getAttribute('data-email');
+            document.getElementById('profilePhone').textContent = card.getAttribute('data-phone');
+            document.getElementById('profileJoin').textContent = card.getAttribute('data-join');
+            
+            document.getElementById('profileModal').classList.add('active');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').classList.remove('active');
+        }
+
+        function sendMessage() {
+            const email = document.getElementById('profileEmail').textContent;
+            window.open(`mailto:${email}`, '_blank');
+        }
+
+        document.getElementById('profileModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProfileModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeProfileModal();
+            }
+        });
+    </script>
 </body>
 </html>

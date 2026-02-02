@@ -7,96 +7,328 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Estilos específicos para recuperar el diseño original */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body, html {
             height: 100%;
-            margin: 0;
-            display: flex;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f7fa;
         }
 
         .login-wrapper {
             display: flex;
             width: 100%;
             height: 100vh;
+            min-height: 600px;
         }
 
-        /* Lado Izquierdo: Imagen del Edificio */
         .login-image {
             flex: 1;
-            background: linear-gradient(rgba(128, 0, 32, 0.4), rgba(128, 0, 32, 0.4)), 
-                        url('img/img_index.png'); /* Asegúrate que esta sea la imagen del edificio */
-            background-size: 100% 100%;
-            background-position: bottom;
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.85), rgba(90, 20, 40, 0.95)),
+                        url('img/img_index.png');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            padding: 40px;
+            padding: 60px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .login-image h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .login-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 20px 20px;
+            animation: float 20s linear infinite;
+        }
 
-        /* Lado Derecho: Formulario */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+
+        .login-image h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-image p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-image .brand-badge {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            letter-spacing: 2px;
+        }
+
         .login-form-container {
-            width: 450px;
+            width: 100%;
+            max-width: 480px;
             background: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 60px;
-            box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+            padding: 50px 45px;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.08);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .login-logo {
-            width: 100px;
-            margin-bottom: 30px;
-            align-self: center;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(128, 0, 32, 0.2);
+            padding: 12px;
+            background: white;
         }
 
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
-        
+        .login-header h2 {
+            font-size: 1.75rem;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .login-header p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
         .login-input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
+            padding: 14px 16px 14px 48px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            color: #1f2937;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #800020;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(128, 0, 32, 0.1);
+        }
+
+        .login-input:focus + .input-icon,
+        .login-input.has-value + .input-icon {
+            color: #800020;
+        }
+
+        .login-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #4b5563;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #800020;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #800020;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .forgot-password:hover {
+            color: #5a1428;
+            text-decoration: underline;
         }
 
         .btn-login {
             width: 100%;
-            padding: 14px;
-            background: var(--vinotinto, #800020);
+            padding: 16px;
+            background: linear-gradient(135deg, #800020, #5a1428);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(128, 0, 32, 0.35);
+        }
+
+        .btn-login:hover::before {
+            left: 100%;
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .divider span {
+            padding: 0 15px;
         }
 
         .register-link {
             text-align: center;
-            margin-top: 25px;
-            font-size: 14px;
-            color: #666;
+            font-size: 0.95rem;
+            color: #6b7280;
         }
 
         .register-link a {
             color: #800020;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
+            transition: color 0.2s;
         }
 
-        /* Responsivo para móviles */
-        @media (max-width: 850px) {
-            .login-image { display: none; }
-            .login-form-container { width: 100%; padding: 40px; }
+        .register-link a:hover {
+            color: #5a1428;
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: auto;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 900px) {
+            .login-image {
+                flex: 0 0 45%;
+            }
+            .login-form-container {
+                max-width: 55%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-wrapper {
+                flex-direction: column;
+            }
+            .login-image {
+                flex: 0 0 220px;
+                padding: 30px;
+            }
+            .login-image h1 {
+                font-size: 2.2rem;
+            }
+            .login-form-container {
+                max-width: 100%;
+                padding: 35px 30px;
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-form-container {
+                padding: 25px 20px;
+            }
+            .login-header h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -109,25 +341,45 @@
         </div>
 
         <div class="login-form-container">
-            <img src="img/logo_fvf.png" alt="Logo FVF" class="login-logo">
-            
-            <h2 style="margin-bottom: 8px;">Iniciar Sesión</h2>
-            <p style="color: #888; margin-bottom: 30px;">Ingresa tus credenciales para continuar</p>
+            <div class="login-header">
+                <img src="img/logo_fvf.png" alt="Logo FVF" class="login-logo">
+                <h2>Bienvenido</h2>
+                <p>Ingresa tus credenciales para acceder</p>
+            </div>
 
             <form onsubmit="event.preventDefault(); window.location.href='intranet.html';">
                 <div class="form-group">
                     <label>Usuario / Correo</label>
-                    <input type="email" class="login-input" placeholder="ejemplo@fvf.com" required>
+                    <div class="input-wrapper">
+                        <input type="email" class="login-input" placeholder="tu@email.com" required>
+                        <i class="input-icon fa-solid fa-envelope"></i>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" class="login-input" placeholder="••••••••" required>
+                    <div class="input-wrapper">
+                        <input type="password" class="login-input" id="passwordInput" placeholder="••••••••" required>
+                        <i class="input-icon fa-solid fa-lock"></i>
+                    </div>
                 </div>
-                <button type="submit" class="btn-login">Entrar</button>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        <span>Recordarme</span>
+                    </label>
+                    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
 
+            <div class="divider"><span>o</span></div>
+
             <div class="register-link">
-                ¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+                ¿No tienes cuenta? <a href="registro.html">Solicita acceso</a>
+            </div>
+
+            <div class="footer-note">
+                &copy; 2025 Federación Venezolana de Fútbol
             </div>
         </div>
     </div>

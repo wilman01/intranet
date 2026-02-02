@@ -7,59 +7,136 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Estilos específicos para las portadas de PDF */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .section-header i {
+            color: #800020;
+            font-size: 1.2rem;
+        }
+
         .pdf-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
         }
+
         .pdf-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid #eee;
+            border: 1px solid #f0f0f0;
         }
+
         .pdf-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
+
         .pdf-cover {
             width: 100%;
             height: 280px;
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
             background-size: cover;
             background-position: top;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f0f0f0;
             position: relative;
         }
+
         .pdf-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(128, 0, 32, 0.7);
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; transition: 0.3s;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.9), rgba(90, 20, 40, 0.95));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        .pdf-card:hover .pdf-overlay { opacity: 1; }
-        .pdf-overlay i { color: white; font-size: 40px; }
-        
-        .pdf-info { padding: 15px; text-align: center; }
-        .pdf-info h3 { font-size: 15px; color: #333; margin: 0; font-weight: 600; }
+
+        .pdf-card:hover .pdf-overlay {
+            opacity: 1;
+        }
+
+        .pdf-overlay i {
+            color: white;
+            font-size: 48px;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-card:hover .pdf-overlay i {
+            transform: scale(1);
+        }
+
+        .pdf-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pdf-info h3 {
+            font-size: 0.95rem;
+            color: #1a1a2e;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .pdf-info .doc-meta {
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .pdf-info .doc-meta i {
+            font-size: 0.7rem;
+        }
     </style>
 </head>
 <body>
 
     <div class="intranet-container">
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header"><img src="img/logo_fvf.png" class="logo-intranet"></div>
+            <div class="sidebar-header">
+                <img src="img/logo_fvf.png" class="logo-intranet">
+            </div>
             <nav class="sidebar-menu">
                 <ul>
                     <li><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
                     <li><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
                     <li><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
                     <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
-                    <li><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a><ul class="submenu"><li><a href="adm-personal.html">Adm de Personal</a></li><li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li><li><a href="seguridad-laboral.html">Seguridad Laboral</a></li><li><a href="atraccion-talento.html">Atraccion de Talento</a></li><li><a href="atencion-medica.html">Atencion Medica</a></li><li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li><li><a href="calidad-vida.html">Calidad de Vida</a></li></ul></li>
+                    <li><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="adm-personal.html">Adm de Personal</a></li>
+                            <li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li>
+                            <li><a href="seguridad-laboral.html">Seguridad Laboral</a></li>
+                            <li><a href="atraccion-talento.html">Atraccion de Talento</a></li>
+                            <li><a href="atencion-medica.html">Atencion Medica</a></li>
+                            <li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li>
+                            <li><a href="calidad-vida.html">Calidad de Vida</a></li>
+                        </ul>
+                    </li>
                     <li><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
                     <li class="active"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
                 </ul>
@@ -72,12 +149,17 @@
         <main class="main-content">
             <header class="top-bar">
                 <h1>Gestión Documental</h1>
-                <div class="user-info"><button class="btn-continue" style="padding: 8px 15px;">+ Subir PDF</button></div>
+                <div class="user-info">
+                    <button class="btn-primary"><i class="fas fa-upload"></i> Subir PDF</button>
+                </div>
             </header>
 
             <div class="scroll-area">
                 <div class="view-section">
-                    <h2 style="margin-bottom: 25px; color: var(--vinotinto);">Documentos y Memorias</h2>
+                    <div class="section-header">
+                        <i class="fas fa-folder-open"></i>
+                        <h2>Documentos y Memorias</h2>
+                    </div>
                     
                     <div class="pdf-grid">
                         <div class="pdf-card" onclick="window.open('docs/manual_identidad.pdf')">
@@ -86,6 +168,7 @@
                             </div>
                             <div class="pdf-info">
                                 <h3>Manual de Identidad FVF</h3>
+                                <div class="doc-meta"><i class="fas fa-file-pdf"></i> PDF • 2.4 MB</div>
                             </div>
                         </div>
 
@@ -95,6 +178,7 @@
                             </div>
                             <div class="pdf-info">
                                 <h3>Estatutos Vigentes</h3>
+                                <div class="doc-meta"><i class="fas fa-file-pdf"></i> PDF • 1.8 MB</div>
                             </div>
                         </div>
 
@@ -104,6 +188,17 @@
                             </div>
                             <div class="pdf-info">
                                 <h3>Memoria y Cuenta 2024</h3>
+                                <div class="doc-meta"><i class="fas fa-file-pdf"></i> PDF • 5.2 MB</div>
+                            </div>
+                        </div>
+
+                        <div class="pdf-card" onclick="window.open('docs/reglamento.pdf')">
+                            <div class="pdf-cover" style="background-image: url('img/reglamento.png');">
+                                <div class="pdf-overlay"><i class="fas fa-file-pdf"></i></div>
+                            </div>
+                            <div class="pdf-info">
+                                <h3>Reglamento Interno</h3>
+                                <div class="doc-meta"><i class="fas fa-file-pdf"></i> PDF • 980 KB</div>
                             </div>
                         </div>
                     </div>

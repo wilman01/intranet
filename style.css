@@ -74,12 +74,209 @@ html, body { height: 100%; width: 100%; background-color: var(--gris-fondo); ove
     padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; 
 }
 
-/* --- REUTILIZABLES --- */
-.sidebar-header { padding: 30px; text-align: center; }
-.logo-intranet { width: 100px; }
-.sidebar-menu li a { display: flex; align-items: center; padding: 15px 25px; color: rgba(255,255,255,0.7); text-decoration: none; }
-.sidebar-menu li.active a { background: var(--vinotinto-hover); color: white; border-left: 4px solid white; }
-/* --- ESTILOS ESPECÍFICOS DE GERENCIAS --- */
+/* --- SIDEBAR MENÚ FLUIDO --- */
+.sidebar-header {
+    padding: 30px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.logo-intranet {
+    width: 100px;
+    transition: transform 0.3s ease;
+}
+
+.logo-intranet:hover {
+    transform: scale(1.05);
+}
+
+.sidebar-menu {
+    flex: 1;
+    padding: 10px 0;
+    overflow-y: auto;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin: 4px 12px;
+    border-radius: 10px;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-menu li a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transition: width 0.3s ease;
+}
+
+.sidebar-menu li a:hover::before {
+    width: 100%;
+}
+
+.sidebar-menu li a:hover {
+    color: white;
+    transform: translateX(8px);
+}
+
+.sidebar-menu li a i {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-menu li a:hover i {
+    transform: scale(1.15);
+}
+
+.sidebar-menu li.active a {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-left: 4px solid white;
+}
+
+.sidebar-menu li.active a::before {
+    display: none;
+}
+
+.sidebar-menu li.active a:hover {
+    transform: none;
+}
+
+/* Ripple effect on click */
+.sidebar-menu li a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+}
+
+.sidebar-menu li a:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+    transition: 0s;
+}
+
+/* --- SUBMENU TALENTO HUMANO --- */
+.sidebar-menu li.has-submenu {
+    position: relative;
+}
+
+.sidebar-menu li.has-submenu > a {
+    cursor: pointer;
+}
+
+.sidebar-menu li.has-submenu .submenu-icon {
+    margin-left: auto;
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-menu li.has-submenu.active .submenu-icon {
+    transform: rotate(90deg);
+}
+
+.sidebar-menu .submenu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar-menu li.has-submenu.active .submenu {
+    max-height: 500px;
+    padding: 8px 0;
+}
+
+.sidebar-menu .submenu li {
+    margin: 2px 8px;
+}
+
+.sidebar-menu .submenu li a {
+    padding: 10px 20px 10px 48px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-menu .submenu li a:hover {
+    color: white;
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-menu .submenu li.active a {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-left: 3px solid white;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+}
+
+.btn-logout i {
+    transition: transform 0.3s ease;
+}
+
+.btn-logout:hover i {
+    transform: scale(1.1);
+}
 .gerencias-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -134,32 +331,7 @@ html, body { height: 100%; width: 100%; background-color: var(--gris-fondo); ove
 .gerencia-card.tecnica { border-top-color: #27ae60; }
 .gerencia-card.comercial { border-top-color: #e74c3c; }
 
-.sidebar-footer {
-    padding: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: auto; /* Lo empuja hacia abajo */
-}
 
-.btn-logout {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 12px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffcccc;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.btn-logout:hover {
-    background-color: #c0392b; /* Rojo alerta al pasar el mouse */
-    color: white;
-}
-/* --- ESTILOS DEL MODAL --- */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -312,14 +484,3 @@ html, body { height: 100%; width: 100%; background-color: var(--gris-fondo); ove
 }
 .profile-card-modal { background: white; width: 350px; border-radius: 20px; overflow: hidden; text-align: center; }
 .profile-main-photo { width: 100%; height: 350px; background-size: cover; background-position: center; }
-/* --- SUBMENU TALENTO HUMANO --- */
-.sidebar-menu li.has-submenu { position: relative; }
-.sidebar-menu li.has-submenu > a { cursor: pointer; }
-.sidebar-menu li.has-submenu .submenu-icon { margin-left: auto; font-size: 0.75rem; transition: transform 0.3s ease; }
-.sidebar-menu li.has-submenu.active .submenu-icon { transform: rotate(90deg); }
-.sidebar-menu .submenu { list-style: none; max-height: 0; overflow: hidden; padding: 0; margin: 0; background: rgba(0, 0, 0, 0.15); border-radius: 8px; transition: max-height 0.3s ease, padding 0.3s ease; }
-.sidebar-menu li.has-submenu.active .submenu { max-height: 500px; padding: 8px 0; }
-.sidebar-menu .submenu li { margin: 2px 8px; }
-.sidebar-menu .submenu li a { padding: 10px 20px 10px 48px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
-.sidebar-menu .submenu li a:hover { color: white; transform: translateX(4px); background: rgba(255, 255, 255, 0.08); }
-.sidebar-menu .submenu li.active a { background: rgba(255, 255, 255, 0.15); color: white; border-left: 3px solid white; }

@@ -6,79 +6,244 @@
     <title>Talento Humano - FVF</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .section-header i {
+            color: #800020;
+            font-size: 1.2rem;
+        }
+
+        .gerencias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .hr-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hr-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .hr-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            background: linear-gradient(135deg, #800020, #5a1428);
+            color: white;
+        }
+
+        .hr-card h3 {
+            font-size: 1.15rem;
+            color: #1a1a2e;
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+
+        .hr-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            flex: 1;
+            margin: 0 0 20px;
+        }
+
+        .documents-section {
+            margin-top: 45px;
+        }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+        }
+
+        .doc-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .doc-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transform: translateX(4px);
+        }
+
+        .doc-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .doc-info {
+            flex: 1;
+        }
+
+        .doc-info h4 {
+            font-size: 0.95rem;
+            color: #1a1a2e;
+            margin: 0 0 4px;
+            font-weight: 600;
+        }
+
+        .doc-info p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .download-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #059669;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
     <div class="intranet-container">
         <aside class="sidebar">
-            <div class="sidebar-header"><img src="img/logo_fvf.png" class="logo-intranet"></div>
+            <div class="sidebar-header">
+                <img src="img/logo_fvf.png" class="logo-intranet">
+            </div>
             <nav class="sidebar-menu">
                 <ul>
                     <li><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
                     <li><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
                     <li><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
                     <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
-                    <li class="active"><a href="talento_humano.html"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span></a></li>
-                    <li class="nav-item-soporte"><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
-                    <li class="nav-item-gestion"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
+                    <li class="active has-submenu"><a href="talento_humano.html"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="adm-personal.html">Adm de Personal</a></li>
+                            <li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li>
+                            <li><a href="seguridad-laboral.html">Seguridad Laboral</a></li>
+                            <li><a href="atraccion-talento.html">Atraccion de Talento</a></li>
+                            <li><a href="atencion-medica.html">Atencion Medica</a></li>
+                            <li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li>
+                            <li><a href="calidad-vida.html">Calidad de Vida</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
+                    <li><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
                 </ul>
             </nav>
-            <div class="sidebar-footer"><a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></div>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a>
+            </div>
         </aside>
 
         <main class="main-content">
-            <header class="top-bar"><h1>Autogestión de Talento Humano</h1>
-            <div class="user-info">
+            <header class="top-bar">
+                <h1>Autogestión de Talento Humano</h1>
+                <div class="user-info">
                     <span><i class="fas fa-user-circle"></i> Usuario FVF</span>
                 </div>
             </header>
 
             <div class="scroll-area">
                 <div class="view-section">
-                    <h2 style="margin-bottom: 25px; color: var(--vinotinto);">Solicitudes y Trámites</h2>
+                    <div class="section-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Solicitudes y Trámites</h2>
+                    </div>
                     
                     <div class="gerencias-grid">
                         
-                        <div class="gerencia-card">
-                            <div class="g-icon"><i class="fas fa-file-invoice"></i></div>
+                        <div class="hr-card">
+                            <div class="hr-icon"><i class="fas fa-file-invoice"></i></div>
                             <h3>Constancia de Trabajo</h3>
                             <p>Solicita tu documento oficial con o sin sueldo detallado.</p>
-                            <button class="btn-continue" onclick="openModal('constancia')" style="padding: 10px;">Gestionar Solicitud</button>
+                            <button class="btn-primary" onclick="openModal('constancia')" style="width: 100%;">
+                                <i class="fas fa-edit"></i> Gestionar Solicitud
+                            </button>
                         </div>
 
-                        <div class="gerencia-card">
-                            <div class="g-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="hr-card">
+                            <div class="hr-icon"><i class="fas fa-piggy-bank"></i></div>
                             <h3>Prestaciones Sociales</h3>
                             <p>Consulta el estatus de tus fideicomisos y adelantos de prestaciones.</p>
-                            <button class="btn-continue" style="padding: 10px;">Consultar</button>
+                            <button class="btn-secondary" style="width: 100%;">
+                                <i class="fas fa-search"></i> Consultar
+                            </button>
                         </div>
 
-                        <div class="gerencia-card">
-                            <div class="g-icon"><i class="fas fa-umbrella-beach"></i></div>
+                        <div class="hr-card">
+                            <div class="hr-icon"><i class="fas fa-umbrella-beach"></i></div>
                             <h3>Solicitud de Vacaciones</h3>
                             <p>Planifica tus días de descanso y consulta tus días disponibles.</p>
-                            <button class="btn-continue" style="padding: 10px;">Solicitar Días</button>
+                            <button class="btn-primary" style="width: 100%;">
+                                <i class="fas fa-calendar-check"></i> Solicitar Días
+                            </button>
                         </div>
 
                     </div>
 
-                    <h2 style="margin: 40px 0 25px; color: var(--vinotinto);">Documentos de Seguro</h2>
-                    
-                    <div class="colabs-grid">
-                        <div class="colab-card">
-                            <div class="g-icon" style="font-size: 30px; margin: 0;"><i class="fas fa-shield-alt"></i></div>
-                            <div class="colab-info">
-                                <h3>Póliza HCM 2024</h3>
-                                <p class="job-title">Documento PDF - Cobertura Ampliada</p>
-                                <span class="dept-tag" style="background:#27ae60; color:white;">Descargar</span>
-                            </div>
+                    <div class="documents-section">
+                        <div class="section-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h2>Documentos de Seguro</h2>
                         </div>
-                        <div class="colab-card">
-                            <div class="g-icon" style="font-size: 30px; margin: 0;"><i class="fas fa-notes-medical"></i></div>
-                            <div class="colab-info">
-                                <h3>Red de Clínicas</h3>
-                                <p class="job-title">Listado de centros autorizados a nivel nacional</p>
-                                <span class="dept-tag" style="background:#27ae60; color:white;">Descargar</span>
+                        
+                        <div class="doc-grid">
+                            <div class="doc-card">
+                                <div class="doc-icon"><i class="fas fa-shield-alt"></i></div>
+                                <div class="doc-info">
+                                    <h4>Póliza HCM 2024</h4>
+                                    <p>Documento PDF • Cobertura Ampliada</p>
+                                </div>
+                                <span class="download-badge"><i class="fas fa-download"></i> Descargar</span>
+                            </div>
+                            <div class="doc-card">
+                                <div class="doc-icon"><i class="fas fa-notes-medical"></i></div>
+                                <div class="doc-info">
+                                    <h4>Red de Clínicas</h4>
+                                    <p>Listado de centros autorizados a nivel nacional</p>
+                                </div>
+                                <span class="download-badge"><i class="fas fa-download"></i> Descargar</span>
                             </div>
                         </div>
                     </div>
@@ -87,31 +252,34 @@
             </div>
         </main>
     </div>
+
     <div id="requestModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 id="modalTitle">Nueva Solicitud</h3>
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-        </div>
-        <div class="modal-body">
-            <form id="solicitudForm">
-                <div class="form-group">
-                    <label>Tipo de Destinatario</label>
-                    <select id="destinatario" class="form-input">
-                        <option value="">Seleccione una opción...</option>
-                        <option value="banco">Entidad Bancaria</option>
-                        <option value="terceros">Terceros / Otros</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Observaciones adicionales</label>
-                    <textarea class="form-input" placeholder="Ej: Dirigida al Banco Mercantil..."></textarea>
-                </div>
-                <button type="button" class="btn-continue" onclick="enviarSolicitud()">Enviar Solicitud</button>
-            </form>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-signature"></i> Nueva Solicitud</h3>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="solicitudForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user-tag"></i> Tipo de Destinatario</label>
+                        <select id="destinatario" class="form-input">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="banco">Entidad Bancaria</option>
+                            <option value="terceros">Terceros / Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-pen"></i> Observaciones adicionales</label>
+                        <textarea class="form-input" placeholder="Ej: Dirigida al Banco Mercantil..."></textarea>
+                    </div>
+                    <button type="button" class="btn-primary" onclick="enviarSolicitud()" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>

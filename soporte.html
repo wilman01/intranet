@@ -6,21 +6,178 @@
     <title>Soporte Técnico - FVF</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .section-header i {
+            color: #800020;
+            font-size: 1.2rem;
+        }
+
+        .gerencias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .support-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .support-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .support-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+        }
+
+        .support-card h3 {
+            font-size: 1.15rem;
+            color: #1a1a2e;
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+
+        .support-card p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            flex: 1;
+            margin: 0 0 20px;
+        }
+
+        .tickets-list {
+            margin-top: 45px;
+        }
+
+        .ticket-item {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .ticket-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .ticket-status {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .ticket-status.pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .ticket-status.resolved {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .ticket-details {
+            flex: 1;
+        }
+
+        .ticket-details h4 {
+            font-size: 0.95rem;
+            color: #1a1a2e;
+            margin: 0 0 6px;
+            font-weight: 600;
+        }
+
+        .ticket-details p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-badge.waiting {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-badge.closed {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+    </style>
 </head>
 <body>
 
     <div class="intranet-container">
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header"><img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet"></div>
+            <div class="sidebar-header">
+                <img src="img/logo_fvf.png" alt="Logo FVF" class="logo-intranet">
+            </div>
             <nav class="sidebar-menu">
                 <ul>
                     <li><a href="intranet.html"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
                     <li><a href="eventos.html"><i class="fas fa-calendar-alt"></i> <span>Eventos</span></a></li>
                     <li><a href="colaboradores.html"><i class="fas fa-users"></i> <span>Colaboradores</span></a></li>
                     <li><a href="gerencias.html"><i class="fas fa-sitemap"></i> <span>Gerencias</span></a></li>
-                    <li><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a><ul class="submenu"><li><a href="adm-personal.html">Adm de Personal</a></li><li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li><li><a href="seguridad-laboral.html">Seguridad Laboral</a></li><li><a href="atraccion-talento.html">Atraccion de Talento</a></li><li><a href="atencion-medica.html">Atencion Medica</a></li><li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li><li><a href="calidad-vida.html">Calidad de Vida</a></li></ul></li>
+                    <li><a href="talento_humano.html" onclick="toggleSubmenu(this); event.preventDefault();"><i class="fas fa-hand-holding-heart"></i> <span>Talento Humano</span> <i class="fas fa-chevron-right submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="adm-personal.html">Adm de Personal</a></li>
+                            <li><a href="formacion-desarrollo.html">Formacion y Desarrollo</a></li>
+                            <li><a href="seguridad-laboral.html">Seguridad Laboral</a></li>
+                            <li><a href="atraccion-talento.html">Atraccion de Talento</a></li>
+                            <li><a href="atencion-medica.html">Atencion Medica</a></li>
+                            <li><a href="gimnasio-corporativo.html">Gimnasio Corporativo</a></li>
+                            <li><a href="calidad-vida.html">Calidad de Vida</a></li>
+                        </ul>
+                    </li>
                     <li class="active"><a href="soporte.html"><i class="fas fa-headset"></i> <span>Soporte Técnico</span></a></li>
-                    <li class="nav-item-gestion"><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
+                    <li><a href="recursos.html"><i class="fas fa-folder-open"></i> <span>Recursos</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -38,48 +195,66 @@
 
             <div class="scroll-area">
                 <div class="view-section">
-                    <h2 style="margin-bottom: 25px; color: var(--vinotinto);">¿Cómo podemos ayudarte hoy?</h2>
+                    <div class="section-header">
+                        <i class="fas fa-life-ring"></i>
+                        <h2>¿Cómo podemos ayudarte hoy?</h2>
+                    </div>
                     
                     <div class="gerencias-grid">
-                        <div class="gerencia-card">
-                            <div class="g-icon" style="color: #e74c3c;"><i class="fas fa-desktop"></i></div>
+                        <div class="support-card" onclick="openTicketModal('Hardware')">
+                            <div class="support-icon" style="background: #fee2e2; color: #dc2626;">
+                                <i class="fas fa-desktop"></i>
+                            </div>
                             <h3>Falla de Equipo</h3>
                             <p>Problemas con PC, monitores, teclados o periféricos de oficina.</p>
-                            <button class="btn-continue" onclick="openTicketModal('Hardware')" style="width: 100%;">Reportar Falla</button>
+                            <button class="btn-primary" style="width: 100%;">Reportar Falla</button>
                         </div>
 
-                        <div class="gerencia-card">
-                            <div class="g-icon" style="color: #3498db;"><i class="fas fa-wifi"></i></div>
+                        <div class="support-card" onclick="openTicketModal('Red')">
+                            <div class="support-icon" style="background: #dbeafe; color: #2563eb;">
+                                <i class="fas fa-wifi"></i>
+                            </div>
                             <h3>Internet y Red</h3>
                             <p>Problemas de conexión, acceso a carpetas compartidas o VPN.</p>
-                            <button class="btn-continue" onclick="openTicketModal('Red')" style="width: 100%;">Reportar Incidencia</button>
+                            <button class="btn-primary" style="width: 100%;">Reportar Incidencia</button>
                         </div>
 
-                        <div class="gerencia-card">
-                            <div class="g-icon" style="color: #27ae60;"><i class="fas fa-code-branch"></i></div>
+                        <div class="support-card" onclick="openTicketModal('Software')">
+                            <div class="support-icon" style="background: #d1fae5; color: #059669;">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
                             <h3>Software y Accesos</h3>
                             <p>Instalación de programas, reseteo de claves o correo institucional.</p>
-                            <button class="btn-continue" onclick="openTicketModal('Software')" style="width: 100%;">Solicitar Acceso</button>
+                            <button class="btn-primary" style="width: 100%;">Solicitar Acceso</button>
                         </div>
                     </div>
 
-                    <h2 style="margin: 40px 0 20px; color: var(--vinotinto);">Mis Tickets Recientes</h2>
-                    <div class="colabs-grid">
-                        <div class="colab-card">
-                            <div class="g-icon" style="font-size: 24px; margin: 0; color: #f1c40f;"><i class="fas fa-clock"></i></div>
-                            <div class="colab-info">
-                                <h3>Ticket #8842 - Falla de Mouse</h3>
-                                <p class="job-title">Estado: <b>En Espera</b> - Creado: 28/12/2025</p>
-                                <span class="dept-tag">Ver Detalle</span>
-                            </div>
+                    <div class="tickets-list">
+                        <div class="section-header">
+                            <i class="fas fa-clock"></i>
+                            <h2>Mis Tickets Recientes</h2>
                         </div>
-                        <div class="colab-card">
-                            <div class="g-icon" style="font-size: 24px; margin: 0; color: #27ae60;"><i class="fas fa-check-circle"></i></div>
-                            <div class="colab-info">
-                                <h3>Ticket #8830 - Acceso a OneDrive</h3>
-                                <p class="job-title">Estado: <b>Resuelto</b> - Cerrado: 24/12/2025</p>
-                                <span class="dept-tag" style="background:#eee; color:#666;">Cerrado</span>
+
+                        <div class="ticket-item">
+                            <div class="ticket-status pending">
+                                <i class="fas fa-clock"></i>
                             </div>
+                            <div class="ticket-details">
+                                <h4>Ticket #8842 - Falla de Mouse</h4>
+                                <p>Estado: <b>En Espera</b> • Creado: 28/12/2025</p>
+                            </div>
+                            <button class="status-badge waiting" onclick="openDetailModal('8842', 'Falla de Mouse', 'En Espera', '28/12/2025', 'Pendiente de revisión por técnico')">Ver Detalle</button>
+                        </div>
+
+                        <div class="ticket-item">
+                            <div class="ticket-status resolved">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="ticket-details">
+                                <h4>Ticket #8830 - Acceso a OneDrive</h4>
+                                <p>Estado: <b>Resuelto</b> • Cerrado: 24/12/2025</p>
+                            </div>
+                            <button class="status-badge closed" onclick="openDetailModal('8830', 'Acceso a OneDrive', 'Resuelto', '24/12/2025', 'Acceso restaurado correctamente')">Cerrado</button>
                         </div>
                     </div>
                 </div>
@@ -90,37 +265,146 @@
     <div id="ticketModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="ticketTitle">Reportar Incidencia</h3>
+                <h3 id="ticketTitle"><i class="fas fa-ticket-alt"></i> Reportar Incidencia</h3>
                 <span class="close-modal" onclick="closeTicketModal()">&times;</span>
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group" style="margin-bottom: 15px;">
-                        <label style="font-weight:600;">Prioridad</label>
-                        <select class="form-input" style="width:100%; margin-top:5px;">
+                    <div class="form-group">
+                        <label><i class="fas fa-flag"></i> Prioridad</label>
+                        <select class="form-input">
                             <option>Baja (Consulta)</option>
                             <option>Media (Dificulta el trabajo)</option>
                             <option>Alta (No puedo trabajar)</option>
                         </select>
                     </div>
-                    <div class="form-group" style="margin-bottom: 15px;">
-                        <label style="font-weight:600;">Descripción del Problema</label>
-                        <textarea class="form-input" style="width:100%; height:100px; margin-top:5px;" placeholder="Detalla lo que sucede..."></textarea>
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Descripción del Problema</label>
+                        <textarea class="form-input" placeholder="Detalla lo que sucede..."></textarea>
                     </div>
-                    <button type="button" class="btn-continue" onclick="alert('Ticket generado correctamente'); closeTicketModal();" style="width:100%;">Generar Ticket #</button>
+                    <button type="button" class="btn-primary" onclick="alert('Ticket generado correctamente'); closeTicketModal();" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Generar Ticket
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
+    <div id="detailModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Detalle del Ticket</h3>
+                <span class="close-modal" onclick="closeDetailModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="detail-header">
+                    <span class="detail-id" id="detailId">#0000</span>
+                    <span class="detail-status" id="detailStatus">Estado</span>
+                </div>
+                <h4 class="detail-title" id="detailTitle">Título del ticket</h4>
+                <div class="detail-info">
+                    <div class="detail-row">
+                        <i class="fas fa-calendar"></i>
+                        <span id="detailDate">Fecha: --</span>
+                    </div>
+                    <div class="detail-row">
+                        <i class="fas fa-align-left"></i>
+                        <span id="detailDescription">Descripción</span>
+                    </div>
+                </div>
+                <div class="detail-actions">
+                    <button class="btn-secondary" onclick="closeDetailModal()">Cerrar</button>
+                    <button class="btn-primary" onclick="alert('Redirigiendo a edición...')">Editar Ticket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .detail-id {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #800020;
+        }
+        .detail-status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .detail-status.pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .detail-status.resolved {
+            background: #d1fae5;
+            color: #059669;
+        }
+        .detail-title {
+            font-size: 1.15rem;
+            color: #1a1a2e;
+            margin: 0 0 20px;
+            font-weight: 700;
+        }
+        .detail-info {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+        .detail-row i {
+            color: #800020;
+            margin-top: 3px;
+        }
+        .detail-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .detail-actions button {
+            flex: 1;
+        }
+    </style>
+
     <script>
-        // Funciones específicas para este modal
         function openTicketModal(categoria) {
-            document.getElementById('ticketTitle').innerText = "Reportar Falla: " + categoria;
+            document.getElementById('ticketTitle').innerHTML = '<i class="fas fa-ticket-alt"></i> Reportar Falla: ' + categoria;
             document.getElementById('ticketModal').style.display = 'flex';
         }
         function closeTicketModal() {
             document.getElementById('ticketModal').style.display = 'none';
+        }
+        function openDetailModal(id, title, status, date, description) {
+            document.getElementById('detailId').textContent = '#' + id;
+            document.getElementById('detailTitle').textContent = title;
+            document.getElementById('detailDate').textContent = 'Fecha: ' + date;
+            document.getElementById('detailDescription').textContent = description;
+            
+            const statusEl = document.getElementById('detailStatus');
+            statusEl.textContent = status;
+            statusEl.className = 'detail-status ' + (status === 'Resuelto' ? 'resolved' : 'pending');
+            
+            document.getElementById('detailModal').style.display = 'flex';
+        }
+        function closeDetailModal() {
+            document.getElementById('detailModal').style.display = 'none';
         }
     </script>
 </body>
