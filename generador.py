@@ -31,6 +31,8 @@ try:
     col_cargo = 'CARGO'
     col_email = 'EMAIL'
     col_fec_ing = 'FEC INGRESO'
+    col_fec_nac = 'FEC NACIMIENTO'
+    col_sexo = 'SEXO'
 
     if not os.path.exists(carpeta_fotos):
         os.makedirs(carpeta_fotos)
@@ -68,6 +70,8 @@ CREATE TABLE colaboradores (
     id_colaborador INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100),
     apellido VARCHAR(100),
+    fecha_nacimiento DATE,
+    sexo VARCHAR(20),
     fecha_ingreso DATE,
     id_departamento INT,
     id_cargo INT,
@@ -88,6 +92,8 @@ CREATE TABLE colaboradores (
     id_colaborador SERIAL PRIMARY KEY,
     nombre VARCHAR(100),
     apellido VARCHAR(100),
+    fecha_nacimiento DATE,
+    sexo VARCHAR(20),
     fecha_ingreso DATE,
     id_departamento INTEGER,
     id_cargo INTEGER,
@@ -126,6 +132,8 @@ CREATE TABLE colaboradores (
             ape = str(row[col_apellido]).replace("'", "''").strip()
 
             f_ing = format_date(row[col_fec_ing])
+            f_nac = format_date(row[col_fec_nac])
+            sexo_val = f"'{str(row[col_sexo]).strip()}'" if pd.notna(row[col_sexo]) and bool(row[col_sexo]) else "NULL"
 
             d_id = dept_map[row[col_dept]]
             c_id = cargo_map[row[col_cargo]]
@@ -147,10 +155,10 @@ CREATE TABLE colaboradores (
                 except Exception as e:
                     print(f"Error extrayendo imagen para {nom} {ape}: {e}")
 
-            f_mysql.write(f"INSERT INTO colaboradores (nombre, apellido, fecha_ingreso, id_departamento, id_cargo, foto_ruta) "
-                          f"VALUES ('{nom}', '{ape}', {f_ing}, {d_id}, {c_id}, {foto_ruta});\n")
-            f_pg.write(f"INSERT INTO colaboradores (nombre, apellido, fecha_ingreso, id_departamento, id_cargo, foto_ruta) "
-                       f"VALUES ('{nom}', '{ape}', {f_ing}, {d_id}, {c_id}, {foto_ruta});\n")
+            f_mysql.write(f"INSERT INTO colaboradores (nombre, apellido, fecha_nacimiento, sexo, fecha_ingreso, id_departamento, id_cargo, foto_ruta) "
+                          f"VALUES ('{nom}', '{ape}', {f_nac}, {sexo_val}, {f_ing}, {d_id}, {c_id}, {foto_ruta});\n")
+            f_pg.write(f"INSERT INTO colaboradores (nombre, apellido, fecha_nacimiento, sexo, fecha_ingreso, id_departamento, id_cargo, foto_ruta) "
+                       f"VALUES ('{nom}', '{ape}', {f_nac}, {sexo_val}, {f_ing}, {d_id}, {c_id}, {foto_ruta});\n")
 
     print(f"Archivos generados:")
     print(f"   - {archivo_salida_mysql}")
